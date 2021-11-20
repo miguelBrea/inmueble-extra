@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Informacion del Inmueble </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-img src="../../../assets/images/{{propiedad.image}}"></ion-img>
+    <h3>{{propiedad.property}}</h3>
+    <h3>{{propiedad.price}}€, {{propiedad.bedrooms}} dormitorios y {{propiedad.sqm}}m<sup>2</sup></h3>
+    <p>{{propiedad.description}}</p>
+    <p><ion-icon name="call" slot="start"></ion-icon> {{propiedad.contactPhone}} </p>
+  </ion-card>
+</ion-content>

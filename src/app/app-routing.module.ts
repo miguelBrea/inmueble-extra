@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'inmueble',
+    loadChildren: () => import('./pages/inmueble/inmueble.module').then( m => m.InmueblePageModule)
+  },
+  {
+    path: 'inmueble/:id',
+    loadChildren: () => import('./pages/inmueble/inmueble.module').then( m => m.InmueblePageModule)
+  }
 ];
 
 @NgModule({

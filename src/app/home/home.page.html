@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Inmuebles
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,39 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Inmuebles</ion-title>
     </ion-toolbar>
-  </ion-header>
+</ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content>
+  <div class="ion-padding">
+
+      <ion-button (click)="verTipo(0)">TODOS</ion-button>
+      <ion-button (click)="verTipo(1)">BARATOS</ion-button>
+      <ion-button (click)="verTipo(2)">DE LUJO</ion-button>
+
+      <p>Entre
+        <!--el evento click es para comprobar las variables de rangos funcionan correctamente-->
+        <input type="number" [(ngModel)]="rangoMin" min="40" max={{rangoMax-1}} /> &nbsp; y &nbsp;
+        <input type="number" [(ngModel)]="rangoMax" min={{rangoMin+1}} max="1000" />
+        &nbsp; años
+      </p>
+    <ion-list *ngFor="let i of inmoService.properties">
+      <ion-item (click)="goInmueble(i)"
+                         *ngIf="((tipoPrecio === 0)||
+                        (tipoPrecio === 1 && i.price<150000)||
+                        (tipoPrecio === 2 && i.price>=300000)) &&
+                        ( i.sqm>= rangoMin && i.sqm <= rangoMax)">
+        <ion-avatar slot="start">
+          <img src="../../assets/images/{{i.image}}">
+        </ion-avatar>
+        <div>
+          <p>{{i.property}}</p>
+          <p>{{i.price}}€</p>
+          <p>{{i.bedrooms}} baños</p>
+          <p>{{i.sqm}} m<sup>2</sup></p>
+        </div>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>
